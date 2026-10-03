@@ -3,26 +3,28 @@ import test from 'node:test'
 
 import { wibus, wibusFormat } from '../src/index.js'
 
-test('base preset stays native and keeps Hyoban TypeScript choices', () => {
+test('base preset keeps Hyoban TypeScript choices and enables React by default', () => {
   const config = wibus()
 
   assert.ok(config.plugins.includes('typescript'))
   assert.ok(config.plugins.includes('unicorn'))
-  assert.equal(config.plugins.includes('react'), false)
+  assert.ok(config.plugins.includes('react'))
+  assert.ok(config.plugins.includes('jsx-a11y'))
+  assert.equal(config.rules['react/set-state-in-effect'], 'off')
   assert.equal(config.rules['typescript/consistent-type-definitions'], 'off')
   assert.equal(config.rules['typescript/no-explicit-any'], 'warn')
   assert.equal(config.rules['node/no-top-level-await'], 'error')
 })
 
-test('React and Next.js are opt-in native plugins', () => {
-  const react = wibus({ react: true })
-  const next = wibus({ nextjs: true })
+test('React can be disabled while Next.js still implies React', () => {
+  const noReact = wibus({ react: false })
+  const next = wibus({ nextjs: true, react: false })
 
-  assert.ok(react.plugins.includes('react'))
-  assert.ok(react.plugins.includes('jsx-a11y'))
-  assert.equal(react.rules['react/set-state-in-effect'], 'off')
+  assert.equal(noReact.plugins.includes('react'), false)
+  assert.equal(noReact.plugins.includes('jsx-a11y'), false)
   assert.ok(next.plugins.includes('nextjs'))
   assert.ok(next.plugins.includes('react'))
+  assert.ok(next.plugins.includes('jsx-a11y'))
 })
 
 test('type-aware rules and user overrides compose', () => {
