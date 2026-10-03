@@ -1,6 +1,8 @@
 # oxc-config-wibus
 
-Wibus' opinionated Oxlint + Oxfmt preset. It is a native-Oxc migration of the conventions used in [`eslint-config-hyoban`](https://github.com/hyoban/eslint-config-hyoban): semantic linting stays in Oxlint, while formatting and import ordering move to Oxfmt.
+An opinionated Oxlint + Oxfmt config by **Wibus**.
+
+Built for my own projects and preferences: Oxlint handles semantic linting, while Oxfmt owns formatting, import ordering, package.json sorting, and optional Tailwind class sorting.
 
 No ESLint runtime or ESLint plugins are required.
 
@@ -25,14 +27,14 @@ export default wibus({
 
 Available switches:
 
-- `react`: enables Oxlint's native React / Hooks / React Compiler plugin.
+- `react`: enables Oxlint's native React, Hooks, and React Compiler rules.
 - `nextjs`: enables native Next.js rules and implies React.
-- `jsxA11y`: enables native JSX accessibility rules; defaults to on with React/Next.js.
+- `jsxA11y`: enables native JSX accessibility rules; defaults to on with React or Next.js.
 - `vitest`: enables native Vitest rules.
-- `typeAware`: enables the migrated type-aware TypeScript rules. Install `oxlint-tsgolint` in the consuming project when using it.
-- `rules`, `plugins`, `categories`, `overrides`, `globals`, `settings`, and other Oxlint fields can be passed through and override the preset.
+- `typeAware`: enables the type-aware TypeScript rules. Install `oxlint-tsgolint` in the consuming project when using it.
+- Native Oxlint fields such as `rules`, `plugins`, `categories`, `overrides`, `globals`, and `settings` can be passed through to override the preset.
 
-Hyoban-specific TypeScript choices are preserved: `consistent-type-definitions` is off and explicit `any` is a warning. Unused imports use Oxlint's native safe fix rather than `eslint-plugin-unused-imports`.
+Some intentionally opinionated defaults include allowing both interfaces and type aliases, warning on explicit `any`, and using Oxlint's native safe fix for unused imports.
 
 ## Oxfmt
 
@@ -48,8 +50,23 @@ export default wibusFormat({
 })
 ```
 
-The default formatting taste is single quotes, no semicolons, trailing commas, 2-space indentation, 100-column width, package.json sorting, and import sorting. Tailwind class sorting is opt-in.
+Defaults:
+
+- single quotes
+- no semicolons
+- trailing commas
+- 2-space indentation
+- 100-column width
+- import sorting
+- package.json sorting
+- optional Tailwind class sorting
 
 ## Migration notes
 
-See [MIGRATION.md](./MIGRATION.md) for the exact mapping and the few intentionally unsupported Hyoban rules.
+See [MIGRATION.md](./MIGRATION.md) for the mapping from the ESLint-based setup and the few rules intentionally left out.
+
+## Credits
+
+This config is heavily inspired by [Hyoban's eslint-config-hyoban](https://github.com/hyoban/eslint-config-hyoban) and [Anthony Fu's @antfu/eslint-config](https://github.com/antfu/eslint-config).
+
+Built on top of the excellent work from the [Oxc](https://github.com/oxc-project/oxc) project, especially Oxlint and Oxfmt.
