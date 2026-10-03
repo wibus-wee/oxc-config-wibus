@@ -183,26 +183,28 @@ const VITEST_RULES = {
 export function wibus(options = {}) {
   const {
     ignorePatterns = ['dist/**', 'coverage/**', 'node_modules/**'],
-    jsxA11y = options.react === true || options.nextjs === true,
+    jsxA11y,
     nextjs = false,
     options: oxlintOptions = {},
     plugins: extraPlugins = [],
-    react = false,
+    react = true,
     rules = {},
     typeAware = false,
     vitest = false,
     ...rest
   } = options
 
+  const enableReact = react || nextjs
+  const enableJsxA11y = jsxA11y ?? enableReact
   const plugins = [...BASE_PLUGINS]
   const mergedRules = { ...BASE_RULES }
 
-  if (react || nextjs) {
+  if (enableReact) {
     plugins.push('react')
     Object.assign(mergedRules, REACT_RULES)
   }
 
-  if (jsxA11y && (react || nextjs)) plugins.push('jsx-a11y')
+  if (enableJsxA11y && enableReact) plugins.push('jsx-a11y')
 
   if (nextjs) plugins.push('nextjs')
 
