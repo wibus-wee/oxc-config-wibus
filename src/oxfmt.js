@@ -34,10 +34,7 @@ const FORMAT_DEFAULTS = {
  * @param {Record<string, any>} [options]
  */
 export function wibusFormat(options = {}) {
-  const {
-    sortTailwindcss = false,
-    ...overrides
-  } = options
+  const { sortTailwindcss = false, ...overrides } = options
 
   return {
     ...FORMAT_DEFAULTS,

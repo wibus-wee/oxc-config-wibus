@@ -36,11 +36,14 @@ const BASE_RULES = {
   'no-throw-literal': 'error',
   'no-unmodified-loop-condition': 'error',
   'no-unneeded-ternary': ['error', { defaultAssignment: false }],
-  'no-unused-expressions': ['error', {
-    allowShortCircuit: true,
-    allowTaggedTemplates: true,
-    allowTernary: true,
-  }],
+  'no-unused-expressions': [
+    'error',
+    {
+      allowShortCircuit: true,
+      allowTaggedTemplates: true,
+      allowTernary: true,
+    },
+  ],
   'no-unused-vars': [
     'error',
     {
@@ -85,11 +88,14 @@ const BASE_RULES = {
 
   'typescript/ban-ts-comment': ['error', { 'ts-expect-error': 'allow-with-description' }],
   'typescript/consistent-type-definitions': 'off',
-  'typescript/consistent-type-imports': ['error', {
-    disallowTypeAnnotations: false,
-    fixStyle: 'separate-type-imports',
-    prefer: 'type-imports',
-  }],
+  'typescript/consistent-type-imports': [
+    'error',
+    {
+      disallowTypeAnnotations: false,
+      fixStyle: 'separate-type-imports',
+      prefer: 'type-imports',
+    },
+  ],
   'typescript/no-dynamic-delete': 'off',
   'typescript/no-empty-object-type': ['error', { allowInterfaces: 'always' }],
   'typescript/no-explicit-any': 'warn',
@@ -99,12 +105,18 @@ const BASE_RULES = {
   'typescript/no-non-null-assertion': 'off',
   'typescript/no-redeclare': ['error', { builtinGlobals: false }],
   'typescript/no-require-imports': 'error',
-  'typescript/no-unused-expressions': ['error', {
-    allowShortCircuit: true,
-    allowTaggedTemplates: true,
-    allowTernary: true,
-  }],
-  'typescript/no-use-before-define': ['error', { classes: false, functions: false, variables: true }],
+  'typescript/no-unused-expressions': [
+    'error',
+    {
+      allowShortCircuit: true,
+      allowTaggedTemplates: true,
+      allowTernary: true,
+    },
+  ],
+  'typescript/no-use-before-define': [
+    'error',
+    { classes: false, functions: false, variables: true },
+  ],
   'typescript/no-wrapper-object-types': 'error',
   'typescript/triple-slash-reference': 'off',
   'typescript/unified-signatures': 'off',
@@ -140,10 +152,13 @@ const TYPE_AWARE_RULES = {
   'typescript/restrict-plus-operands': 'error',
   'typescript/restrict-template-expressions': 'error',
   'typescript/return-await': ['error', 'in-try-catch'],
-  'typescript/strict-boolean-expressions': ['error', {
-    allowNullableBoolean: true,
-    allowNullableObject: true,
-  }],
+  'typescript/strict-boolean-expressions': [
+    'error',
+    {
+      allowNullableBoolean: true,
+      allowNullableObject: true,
+    },
+  ],
   'typescript/switch-exhaustiveness-check': 'error',
   'typescript/unbound-method': 'error',
 }
@@ -187,19 +202,16 @@ export function wibus(options = {}) {
     Object.assign(mergedRules, REACT_RULES)
   }
 
-  if (jsxA11y && (react || nextjs))
-    plugins.push('jsx-a11y')
+  if (jsxA11y && (react || nextjs)) plugins.push('jsx-a11y')
 
-  if (nextjs)
-    plugins.push('nextjs')
+  if (nextjs) plugins.push('nextjs')
 
   if (vitest) {
     plugins.push('vitest')
     Object.assign(mergedRules, VITEST_RULES)
   }
 
-  if (typeAware)
-    Object.assign(mergedRules, TYPE_AWARE_RULES)
+  if (typeAware) Object.assign(mergedRules, TYPE_AWARE_RULES)
 
   Object.assign(mergedRules, rules)
 

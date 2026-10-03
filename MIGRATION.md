@@ -2,20 +2,20 @@
 
 This preset keeps the behavior that maps cleanly to Oxc and deliberately drops ESLint as an execution layer.
 
-| Hyoban / Antfu responsibility | oxc-config-wibus |
-| --- | --- |
-| ESLint core correctness rules | Native Oxlint `eslint` rules |
-| TypeScript rules | Native Oxlint `typescript` rules |
-| `eslint-plugin-unicorn` | Native Oxlint `unicorn` plugin |
-| import rules | Native Oxlint `import` plugin |
-| `antfu/no-top-level-await` | Native `node/no-top-level-await` |
-| `eslint-plugin-unused-imports` | Native `no-unused-vars` safe import fixes |
-| React / Hooks | Native Oxlint `react` plugin |
-| Next.js | Native Oxlint `nextjs` plugin |
-| Vitest | Native Oxlint `vitest` plugin |
-| Stylistic ESLint rules | Oxfmt |
-| `simple-import-sort` | Oxfmt `sortImports` |
-| Tailwind class ordering / duplicates | Oxfmt `sortTailwindcss` when enabled |
+| Hyoban / Antfu responsibility        | oxc-config-wibus                          |
+| ------------------------------------ | ----------------------------------------- |
+| ESLint core correctness rules        | Native Oxlint `eslint` rules              |
+| TypeScript rules                     | Native Oxlint `typescript` rules          |
+| `eslint-plugin-unicorn`              | Native Oxlint `unicorn` plugin            |
+| import rules                         | Native Oxlint `import` plugin             |
+| `antfu/no-top-level-await`           | Native `node/no-top-level-await`          |
+| `eslint-plugin-unused-imports`       | Native `no-unused-vars` safe import fixes |
+| React / Hooks                        | Native Oxlint `react` plugin              |
+| Next.js                              | Native Oxlint `nextjs` plugin             |
+| Vitest                               | Native Oxlint `vitest` plugin             |
+| Stylistic ESLint rules               | Oxfmt                                     |
+| `simple-import-sort`                 | Oxfmt `sortImports`                       |
+| Tailwind class ordering / duplicates | Oxfmt `sortTailwindcss` when enabled      |
 
 ## Preserved Hyoban overrides
 

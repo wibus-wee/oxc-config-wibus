@@ -1,6 +1,9 @@
 import type { OxlintConfig } from 'oxlint'
 
-export interface WibusOptions extends Omit<OxlintConfig, 'ignorePatterns' | 'options' | 'plugins' | 'rules'> {
+export interface WibusOptions extends Omit<
+  OxlintConfig,
+  'ignorePatterns' | 'options' | 'plugins' | 'rules'
+> {
   ignorePatterns?: string[]
   jsxA11y?: boolean
   nextjs?: boolean
