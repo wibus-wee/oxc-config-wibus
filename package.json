@@ -1,0 +1,61 @@
+{
+  "name": "oxc-config-wibus",
+  "version": "0.1.0",
+  "description": "Wibus' opinionated Oxlint and Oxfmt presets",
+  "keywords": [
+    "config",
+    "format",
+    "lint",
+    "oxc",
+    "oxfmt",
+    "oxlint"
+  ],
+  "homepage": "https://github.com/wibus-wee/oxc-config-wibus#readme",
+  "bugs": "https://github.com/wibus-wee/oxc-config-wibus/issues",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wibus-wee/oxc-config-wibus.git"
+  },
+  "files": [
+    "src"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js"
+    },
+    "./oxlint": {
+      "types": "./src/oxlint.d.ts",
+      "import": "./src/oxlint.js"
+    },
+    "./oxfmt": {
+      "types": "./src/oxfmt.d.ts",
+      "import": "./src/oxfmt.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "check": "pnpm test && pnpm lint && pnpm format:check",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint src test oxlint.config.mts oxfmt.config.mts",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.86.0"
+  },
+  "peerDependencies": {
+    "oxfmt": ">=0.71.0",
+    "oxlint": ">=1.79.0"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "packageManager": "pnpm@10.31.0"
+}
