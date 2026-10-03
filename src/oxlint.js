@@ -21,7 +21,6 @@ const BASE_RULES = {
   'no-new': 'error',
   'no-new-func': 'error',
   'no-new-wrappers': 'error',
-  'no-octal': 'error',
   'no-proto': 'error',
   'no-redeclare': ['error', { builtinGlobals: false }],
   'no-restricted-globals': [
@@ -35,7 +34,6 @@ const BASE_RULES = {
   'no-sparse-arrays': 'error',
   'no-template-curly-in-string': 'error',
   'no-throw-literal': 'error',
-  'no-undef-init': 'error',
   'no-unmodified-loop-condition': 'error',
   'no-unneeded-ternary': ['error', { defaultAssignment: false }],
   'no-unused-expressions': ['error', {
