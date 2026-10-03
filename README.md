@@ -20,16 +20,15 @@ pnpm add -D oxc-config-wibus oxlint oxfmt
 import { wibus } from 'oxc-config-wibus'
 
 export default wibus({
-  react: true,
   vitest: true,
 })
 ```
 
 Available switches:
 
-- `react`: enables Oxlint's native React, Hooks, and React Compiler rules.
-- `nextjs`: enables native Next.js rules and implies React.
-- `jsxA11y`: enables native JSX accessibility rules; defaults to on with React or Next.js.
+- `react`: enables Oxlint's native React, Hooks, and React Compiler rules. Enabled by default; set `react: false` to opt out.
+- `nextjs`: enables native Next.js rules and implies React even when `react: false`.
+- `jsxA11y`: enables native JSX accessibility rules; defaults to the effective React setting.
 - `vitest`: enables native Vitest rules.
 - `typeAware`: enables the type-aware TypeScript rules. Install `oxlint-tsgolint` in the consuming project when using it.
 - Native Oxlint fields such as `rules`, `plugins`, `categories`, `overrides`, `globals`, and `settings` can be passed through to override the preset.
