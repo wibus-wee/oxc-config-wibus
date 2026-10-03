@@ -175,6 +175,18 @@ const VITEST_RULES = {
   'vitest/no-focused-tests': 'error',
 }
 
+const STYLEX_JS_PLUGIN = {
+  name: 'stylex',
+  specifier: '@stylexjs/eslint-plugin',
+}
+
+const STYLEX_RULES = {
+  'stylex/no-legacy-contextual-styles': 'error',
+  'stylex/no-unused': 'error',
+  'stylex/sort-keys': ['error', { order: 'recess' }],
+  'stylex/valid-styles': 'error',
+}
+
 /**
  * Create the shared Oxlint configuration.
  *
@@ -183,32 +195,43 @@ const VITEST_RULES = {
 export function wibus(options = {}) {
   const {
     ignorePatterns = ['dist/**', 'coverage/**', 'node_modules/**'],
-    jsxA11y = options.react === true || options.nextjs === true,
+    jsPlugins: extraJsPlugins = [],
+    jsxA11y,
     nextjs = false,
     options: oxlintOptions = {},
     plugins: extraPlugins = [],
-    react = false,
+    react = true,
     rules = {},
+    stylex = false,
     typeAware = false,
     vitest = false,
     ...rest
   } = options
 
+  const enableReact = react || nextjs
+  const enableJsxA11y = jsxA11y ?? enableReact
   const plugins = [...BASE_PLUGINS]
+  const jsPlugins = [...extraJsPlugins]
   const mergedRules = { ...BASE_RULES }
 
-  if (react || nextjs) {
+  if (enableReact) {
     plugins.push('react')
     Object.assign(mergedRules, REACT_RULES)
   }
 
-  if (jsxA11y && (react || nextjs)) plugins.push('jsx-a11y')
+  if (enableJsxA11y && enableReact) plugins.push('jsx-a11y')
 
   if (nextjs) plugins.push('nextjs')
 
   if (vitest) {
     plugins.push('vitest')
     Object.assign(mergedRules, VITEST_RULES)
+  }
+
+  if (stylex) {
+    if (!jsPlugins.some((plugin) => typeof plugin === 'object' && plugin?.name === 'stylex'))
+      jsPlugins.push(STYLEX_JS_PLUGIN)
+    Object.assign(mergedRules, STYLEX_RULES)
   }
 
   if (typeAware) Object.assign(mergedRules, TYPE_AWARE_RULES)
@@ -218,6 +241,7 @@ export function wibus(options = {}) {
   return {
     ...rest,
     ignorePatterns,
+    jsPlugins,
     options: {
       ...oxlintOptions,
       typeAware,

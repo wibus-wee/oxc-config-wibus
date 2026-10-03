@@ -46,6 +46,9 @@
     "lint": "oxlint src test oxlint.config.mts oxfmt.config.mts",
     "test": "node --test"
   },
+  "dependencies": {
+    "@stylexjs/eslint-plugin": "^0.19.1"
+  },
   "devDependencies": {
     "oxfmt": "^0.71.0",
     "oxlint": "^1.86.0"
