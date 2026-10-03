@@ -229,7 +229,7 @@ export function wibus(options = {}) {
   }
 
   if (stylex) {
-    if (!jsPlugins.some(plugin => typeof plugin === 'object' && plugin?.name === 'stylex'))
+    if (!jsPlugins.some((plugin) => typeof plugin === 'object' && plugin?.name === 'stylex'))
       jsPlugins.push(STYLEX_JS_PLUGIN)
     Object.assign(mergedRules, STYLEX_RULES)
   }
