@@ -27,6 +27,20 @@ test('React can be disabled while Next.js still implies React', () => {
   assert.ok(next.plugins.includes('jsx-a11y'))
 })
 
+test('StyleX uses the official ESLint plugin through Oxlint compatibility', () => {
+  const config = wibus({ stylex: true })
+
+  assert.deepEqual(config.jsPlugins, [
+    {
+      name: 'stylex',
+      specifier: '@stylexjs/eslint-plugin',
+    },
+  ])
+  assert.equal(config.rules['stylex/valid-styles'], 'error')
+  assert.equal(config.rules['stylex/no-unused'], 'error')
+  assert.deepEqual(config.rules['stylex/sort-keys'], ['error', { order: 'recess' }])
+})
+
 test('type-aware rules and user overrides compose', () => {
   const config = wibus({
     categories: { suspicious: 'warn' },
